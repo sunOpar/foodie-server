@@ -4,7 +4,7 @@ module.exports = {
     node: true,
   },
   extends: [
-    'airbnb-base',
+    'airbnb-typescript',
   ],
   globals: {
     Atomics: 'readonly',
