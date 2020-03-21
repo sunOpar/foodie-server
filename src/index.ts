@@ -1,12 +1,16 @@
 import http from 'http'
+import menu from './menu'
+import './mysql'
 
 const hostname = '127.0.0.1'
-const port = 3000
+const port = 8080
 
 const server = http.createServer((req, res) => {
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'text/plain')
-  res.end('Hello World')
+  if (req.url === '/menu') {
+    return menu(req, res)
+  }else {
+    res.writeHead(404).end()
+  }
 })
 
 server.listen(port, hostname, () => {
