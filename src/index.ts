@@ -1,19 +1,12 @@
-import http from 'http'
+import express from 'express'
 import menu from './menu'
 import './mysql'
 
-const hostname = '0.0.0.0'
+const app = express()
 const port = 8088
 
-const server = http.createServer((req, res) => {
-  res.end('hello world')
-  if (req.url === '/menu') {
-    return menu(req, res)
-  }else {
-    res.writeHead(404).end()
-  }
-})
+app.get('/menu', menu)
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`)
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}!`)
 })
