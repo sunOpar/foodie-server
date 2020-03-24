@@ -1,0 +1,32 @@
+ROSTemplateFormatVersion: '2015-09-01'
+Transform: 'Aliyun::Serverless-2018-04-03'
+Resources:
+  foodie-service: # service name
+    Type: 'Aliyun::Serverless::Service'
+    Properties:
+      Description: 'foodie serverless service'
+      InternetAccess: true # public network access
+    Menu: # function name
+      Type: 'Aliyun::Serverless::Function'
+      Properties:
+        Handler: dist/index.handler
+        Runtime: nodejs10
+        CodeUri: './'
+        Timeout: 60
+      Events:
+        httpTrigger:
+          Type: HTTP
+          Properties:
+            AuthType: ANONYMOUS
+            Methods: ['POST', 'GET']
+  # expressGroup:
+  #   Type: 'Aliyun::Serverless::Api'
+  #   Properties:
+  #     StageName: RELEASE
+  #     DefinitionBody:
+  #       '/':
+  #         get:
+  #           x-aliyun-apigateway-api-name: expressApi
+  #           x-aliyun-apigateway-fc:
+  #             arn: acs:fc:::services/${ demo-service.Arn}/functions/${ demo.Arn}/
+  #             timeout: 10000

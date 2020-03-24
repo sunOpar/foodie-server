@@ -1,12 +1,13 @@
+import {Server} from '@webserverless/fc-express'
 import express from 'express'
 import menu from './menu'
-import './mysql'
 
 const app = express()
-const port = 8088
 
 app.get('/menu', menu)
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}!`)
-})
+const server = new Server(app)
+
+export const handler = function(req: any, res: any, context: any) {
+  server.httpProxy(req, res, context)
+}

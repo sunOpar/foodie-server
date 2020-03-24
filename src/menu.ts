@@ -1,17 +1,11 @@
-import http from 'http'
+import { Response, Request } from 'express'
 import sql from './mysql'
 
-export default async function menu(
-  req: http.IncomingMessage,
-  res: http.ServerResponse,
-) {
+export default async function menu(req: Request, res: Response) {
   try {
     const data = await sql.query('SELECT * FROM menu')
-    res.statusCode = 200
-    res.setHeader('Content-Type', 'text/plain')
-    res.end(JSON.stringify(data))
-    
+    res.json(data)
   } catch (error) {
-    res.end(JSON.stringify(error))
+    res.json(error)
   }
 }
