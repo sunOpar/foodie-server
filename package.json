@@ -2,9 +2,10 @@
   "name": "foodie-server",
   "version": "1.0.0",
   "description": "",
-  "main": ".eslintrc.js",
+  "main": "src/index.ts",
   "scripts": {
-    "start": "nodemon"
+    "dev": "nodemon",
+    "start": "ts-node -T ./src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -26,10 +27,10 @@
     "eslint-config-airbnb-typescript": "^7.2.0",
     "eslint-plugin-import": "^2.20.1",
     "nodemon": "^2.0.2",
-    "ts-node": "^8.7.0",
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "ts-node": "^8.7.0"
   }
 }
