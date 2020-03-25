@@ -6,7 +6,7 @@ Resources:
     Properties:
       Description: 'foodie serverless service'
       InternetAccess: true # public network access
-    Menu: # function name
+    api: # function name
       Type: 'Aliyun::Serverless::Function'
       Properties:
         Handler: dist/index.handler
