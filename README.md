@@ -5,6 +5,7 @@
 - ServerLess
 - NodeJS
 - MySQL
+- ExpressJS
 
 ## development
 
@@ -12,4 +13,10 @@
 npm install @alicloud/fun -g
 yarn dev
 fun local start
+```
+
+## deploy
+
+```bash
+fun deploy
 ```
