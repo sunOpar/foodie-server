@@ -1,11 +1,17 @@
 ROSTemplateFormatVersion: '2015-09-01'
 Transform: 'Aliyun::Serverless-2018-04-03'
 Resources:
-  foodie-service: # service name
+  foodie-service:
     Type: 'Aliyun::Serverless::Service'
     Properties:
-      Description: 'foodie serverless service'
-      InternetAccess: true # public network access
+      Description: foodie serverless service
+      Role: 'acs:ram::1480466305752483:role/new-service1585108066159-role'
+      VpcConfig:
+        VpcId: vpc-uf6uv9bt270rqm83t2ezi
+        VSwitchIds:
+          - vsw-uf65ml7vbt4jqrby1jgeg
+        SecurityGroupId: sg-uf6ijcs0cia6azmm6k75
+      InternetAccess: true
     api: # function name
       Type: 'Aliyun::Serverless::Function'
       Properties:
@@ -13,6 +19,11 @@ Resources:
         Runtime: nodejs10
         CodeUri: './'
         Timeout: 60
+        Initializer: dist/index.initializer
+        EnvironmentVariables:
+          DB_HOST: 127.0.0.1:3306
+          DB_USER: root
+          DB_PASSWORD: 123456
       Events:
         httpTrigger:
           Type: HTTP

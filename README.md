@@ -20,3 +20,9 @@ fun local start
 ```bash
 fun deploy
 ```
+
+## TODO
+
+- API gateway
+- bundle size optimize
+- initializer
