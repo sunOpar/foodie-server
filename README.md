@@ -22,4 +22,3 @@ yarn deploy
 ## TODO
 
 - API gateway
-- initializer

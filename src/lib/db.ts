@@ -6,21 +6,30 @@ const host =
     ? process.env.DB_HOST
     : process.env.DB_DEV_HOST
 
-const sequelize = new Sequelize(
-  'foodie',
-  process.env.DB_USER!,
-  process.env.DB_PASSWORD,
-  {
-    host,
-    dialect: 'mysql',
-    dialectModule: mysql2,
-    pool: {
-      max: 5,
-      min: 0,
-      acquire: 30000,
-      idle: 10000,
-    },
-  },
-)
+const db: {
+  sequelize?: Sequelize
+} = {
+  sequelize: undefined,
+}
 
-export default sequelize
+export function initDB() {
+  const sequelize = new Sequelize(
+    'foodie',
+    process.env.DB_USER!,
+    process.env.DB_PASSWORD,
+    {
+      host,
+      dialect: 'mysql',
+      dialectModule: mysql2,
+      pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000,
+      },
+    },
+  )
+  db.sequelize = sequelize
+}
+
+export default db

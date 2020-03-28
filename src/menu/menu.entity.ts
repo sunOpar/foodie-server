@@ -1,4 +1,4 @@
-import sequelize from '../lib/db'
+import db from '../lib/db'
 import { STRING, Model, INTEGER } from 'sequelize'
 
 class MenuEntity extends Model {
@@ -8,7 +8,7 @@ class MenuEntity extends Model {
 }
 MenuEntity.init(
   {
-    menuId:{
+    menuId: {
       type: INTEGER.UNSIGNED,
       autoIncrement: true,
       primaryKey: true,
@@ -26,7 +26,7 @@ MenuEntity.init(
       allowNull: false,
     },
   },
-  { tableName: 'menu', sequelize },
+  { tableName: 'menu', sequelize: db.sequelize! },
 )
 
 export default MenuEntity
