@@ -10,19 +10,16 @@
 ## development
 
 ```bash
-npm install @alicloud/fun -g
 yarn dev
-fun local start
 ```
 
 ## deploy
 
 ```bash
-fun deploy
+yarn deploy
 ```
 
 ## TODO
 
 - API gateway
-- bundle size optimize
 - initializer
