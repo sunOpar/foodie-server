@@ -4,6 +4,7 @@ import menuController from './menu/menu.controller'
 
 const app = express()
 
+console.log(process.env.DB_HOST)
 app.get('/menu', menuController)
 
 const server = new Server(app)

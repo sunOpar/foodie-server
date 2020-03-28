@@ -1,7 +1,7 @@
 ROSTemplateFormatVersion: '2015-09-01'
 Transform: 'Aliyun::Serverless-2018-04-03'
 Resources:
-  foodie-service:
+  foodie-service: # service name
     Type: 'Aliyun::Serverless::Service'
     Properties:
       Description: foodie serverless service
@@ -15,15 +15,11 @@ Resources:
     api: # function name
       Type: 'Aliyun::Serverless::Function'
       Properties:
-        Handler: dist/index.handler
+        Handler: bundle.handler
         Runtime: nodejs10
-        CodeUri: './'
+        CodeUri: './dist'
         Timeout: 60
-        Initializer: dist/index.initializer
-        EnvironmentVariables:
-          DB_HOST: 127.0.0.1:3306
-          DB_USER: root
-          DB_PASSWORD: 123456
+        Initializer: bundle.initializer
       Events:
         httpTrigger:
           Type: HTTP

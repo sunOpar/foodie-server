@@ -4,8 +4,9 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "build": "tsc",
-    "dev": "nodemon"
+    "build": "webpack --config webpack.common.js --mode=production",
+    "dev": "webpack-dev-server --config webpack.dev.js --mode=development & fun local start",
+    "deploy": "webpack --config webpack.prod.js --mode=production && fun deploy"
   },
   "repository": {
     "type": "git",
@@ -19,21 +20,32 @@
   },
   "homepage": "https://github.com/sunOpar/foodie-server#readme",
   "devDependencies": {
+    "@alicloud/fun": "^3.6.5",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-typescript": "^7.9.0",
     "@types/express": "^4.17.3",
     "@types/mysql": "^2.15.9",
     "@types/node": "^13.9.2",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
+    "babel-loader": "^8.1.0",
+    "dotenv-webpack": "^1.7.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-typescript": "^7.2.0",
     "eslint-plugin-import": "^2.20.1",
-    "nodemon": "^2.0.2",
-    "typescript": "^3.8.3"
+    "terser-webpack-plugin": "^2.3.5",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "@webserverless/fc-express": "^0.1.4",
     "express": "^4.17.1",
     "mysql2": "^2.1.0",
+    "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.5",
     "serverless-mysql": "^1.5.3",
     "ts-node": "^8.7.0"

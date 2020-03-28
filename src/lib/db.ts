@@ -1,16 +1,26 @@
 import { Sequelize } from 'sequelize'
+import mysql2 from 'mysql2'
 
-const { DB_HOST, DB_PASSWORD, DB_USER } = process.env
+const host =
+  process.env.NODE_ENV === 'production'
+    ? process.env.DB_HOST
+    : process.env.DB_DEV_HOST
 
-const sequelize = new Sequelize('foodie', DB_USER!, DB_PASSWORD, {
-  host: DB_HOST,
-  dialect: 'mysql',
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000,
+const sequelize = new Sequelize(
+  'foodie',
+  process.env.DB_USER!,
+  process.env.DB_PASSWORD,
+  {
+    host,
+    dialect: 'mysql',
+    dialectModule: mysql2,
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
   },
-})
+)
 
 export default sequelize
