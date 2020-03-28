@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack.common.js --mode=production",
     "dev": "webpack-dev-server --config webpack.dev.js --mode=development & fun local start",
-    "deploy": "webpack --config webpack.prod.js --mode=production && fun deploy"
+    "deploy": "rm -rf ./dist && webpack --config webpack.prod.js --mode=production && fun deploy"
   },
   "repository": {
     "type": "git",
